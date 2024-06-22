@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnuwu71cflfvs"]
+
+[ext_resource type="PackedScene" uid="uid://b2ncexsbkd2ca" path="res://player/player.tscn" id="1_djqh7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yxmsv"]
+
+[sub_resource type="Sky" id="Sky_1ole6"]
+sky_material = SubResource("ProceduralSkyMaterial_yxmsv")
+
+[sub_resource type="Environment" id="Environment_flv3c"]
+background_mode = 2
+sky = SubResource("Sky_1ole6")
+ambient_light_source = 2
+ambient_light_color = Color(0.823529, 0.898039, 0.996078, 1)
+ambient_light_energy = 0.66
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="Level" type="Node" parent="."]
+
+[node name="floor" type="CSGBox3D" parent="Level"]
+use_collision = true
+size = Vector3(50, 0.1, 50)
+
+[node name="box" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.65481, 0.548611, 4.76904)
+use_collision = true
+size = Vector3(1, 1, 1.46191)
+
+[node name="wall" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.77692, 0, -2.0392)
+use_collision = true
+size = Vector3(6, 7, 0.1)
+
+[node name="wall2" type="CSGBox3D" parent="Level"]
+transform = Transform3D(3.91, 0, 0, 0, 1.25, 0, 0, 0, 0.2, 6.73452, 0, 9.9608)
+use_collision = true
+size = Vector3(6, 7, 0.1)
+
+[node name="player" parent="." instance=ExtResource("1_djqh7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68495, 1, 3.04383)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_flv3c")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -246.734, 6, 11)
+light_energy = 0.354
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.955061, 0.296408, 0, -0.296408, 0.955061, 0, 8.25433, 11)
+light_energy = 0.677
+shadow_enabled = true
+shadow_opacity = 0.66
