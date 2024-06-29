@@ -1,5 +1,6 @@
 using Godot;
 
+[GlobalClass]
 public partial class player : CharacterBody3D
 {
 	public Vector3 direction;
@@ -34,17 +35,6 @@ public partial class player : CharacterBody3D
 			Vector3 bodyRotation = collisionBody.Rotation;
 			bodyRotation.Y = Mathf.LerpAngle(bodyRotation.Y,Mathf.Atan2(-direction.X, -direction.Z), (float)delta * speed);
 			collisionBody.Rotation = bodyRotation;
-		}
-		
-		//camera gamepad part (needs constant movement so _Input event wouldn't work with this like mouseinput)
-		gpCamVector = Input.GetVector("gp_cam_left", "gp_cam_right", "gp_cam_up", "gp_cam_down");
-		if(gpCamVector != Vector2.Zero)
-		{
-			Vector3 camRot = cameraCenter.RotationDegrees;
-			camRot.Y -= gpCamVector.X * camSensitivity * (float)delta * 500;
-			camRot.X -= gpCamVector.Y * camSensitivity * (float)delta * 500;
-			camRot.X = Mathf.Clamp(camRot.X, minCamPitch, maxCamPitch); //prevents camera from going endlessly around the player
-			cameraCenter.RotationDegrees = camRot;
 		}
 	}
 	

@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://bokly20ogcs5k"]
+
+[ext_resource type="PackedScene" uid="uid://cxafsnw61tglc" path="res://card_system/card/CardUI.tscn" id="1_8grrj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e05dh"]
+size = Vector2(1152, 200)
+
+[node name="ComboEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardDropArea" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardDropArea"]
+position = Vector2(576, 125)
+shape = SubResource("RectangleShape2D_e05dh")
+
+[node name="CardSystemUI" type="CanvasLayer" parent="." groups=["uiLayer"]]
+
+[node name="Deck" type="HBoxContainer" parent="CardSystemUI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -575.0
+offset_top = -193.0
+offset_right = 577.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="CardUI" parent="CardSystemUI/Deck" instance=ExtResource("1_8grrj")]
+layout_mode = 2
+
+[node name="CardUI2" parent="CardSystemUI/Deck" instance=ExtResource("1_8grrj")]
+layout_mode = 2
+
+[node name="CardUI3" parent="CardSystemUI/Deck" instance=ExtResource("1_8grrj")]
+layout_mode = 2
